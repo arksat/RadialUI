@@ -26,6 +26,10 @@ public class RadialMenu : MonoBehaviour {
 	//コールバック
 	private Dictionary<string, Action<GameObject>> clickCallbackDic;
 
+	private int currentFocus = 0;
+	private int fragmentCount = 0;
+
+
 	#region UnityEvent
 
 	private void Awake() {
@@ -33,7 +37,29 @@ public class RadialMenu : MonoBehaviour {
 		clickCallbackDic = new Dictionary<string, Action<GameObject>>();
 	}
 
+	private void Update() {
+
+		if (!Visibled) return;
+
+		if(Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			currentFocus++;
+			if (currentFocus > fragmentCount-1) currentFocus--;
+			print("Up FOCUS="+currentFocus);
+		}
+		else if (Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			currentFocus--;
+			if (currentFocus < 0) currentFocus = 0;
+			print("Down FOCUS="+currentFocus);
+		}
+
+
+	}
+
+
 	#endregion
+
 
 	#region Function
 
@@ -50,6 +76,9 @@ public class RadialMenu : MonoBehaviour {
 			T t = e.GetComponent<T>();
 			if(t != null) list.Add(t);
 		}
+
+		fragmentCount = list.Count;
+		print("GetComponentsInChildren COUNT="+fragmentCount);
 		if(list.Count <= 0) {
 			return null;
 		} else {
@@ -212,6 +241,7 @@ public class RadialMenu : MonoBehaviour {
 		}
 		sb.Append(gObj.name);
 		string path = sb.ToString();
+		print("CALLBACK=" + path);
 
 		//辞書を確認
 		if(clickCallbackDic.ContainsKey(path)) {

@@ -30,8 +30,14 @@ namespace Seiro.Scripts.EventSystems {
 		}
 
 		private void Update() {
+
+			// マウス位置
 			Vector2 screenPos = Input.mousePosition;
+
+			// Hover check
 			CheckHighlight(screenPos);
+
+			// Click check
 			CheckClick();
 		}
 

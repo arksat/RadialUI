@@ -148,7 +148,7 @@ public class UICircleFragment : MonoBehaviour, ICollisionEventHandler {
 		float radiusRange = (frag.NowOuter - frag.NowInner);
 		float centerRadius = radiusRange * 0.5f + frag.NowInner;
 		Vector3 pos = GeomUtil.DegToVector2(centerAngle) * centerRadius;
-		pos.z = transform.localPosition.z - 1f;
+		pos.z = transform.localPosition.z - 0.2f;
 
 		//lerpSpriteは自身のローカルにいること?
 		lerpSprite.transform.localPosition = pos;
