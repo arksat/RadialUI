@@ -28,6 +28,10 @@ public class RadialMenu : MonoBehaviour {
 
 	private int currentFocus = 0;
 	private int fragmentCount = 0;
+	private float fragmentOffset = 0;
+
+
+	public GameObject focusBase;
 
 
 	#region UnityEvent
@@ -46,12 +50,15 @@ public class RadialMenu : MonoBehaviour {
 			currentFocus++;
 			if (currentFocus > fragmentCount-1) currentFocus--;
 			print("Up FOCUS="+currentFocus);
+			focusBase.transform.Rotate(new Vector3(0, 0, (360.0f / fragmentCount)));
 		}
 		else if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			currentFocus--;
 			if (currentFocus < 0) currentFocus = 0;
 			print("Down FOCUS="+currentFocus);
+			focusBase.transform.Rotate(new Vector3(0, 0, -(360.0f / fragmentCount)));
+
 		}
 
 
@@ -78,6 +85,7 @@ public class RadialMenu : MonoBehaviour {
 		}
 
 		fragmentCount = list.Count;
+		fragmentOffset = 360.0f / fragmentCount * 0.5f;
 		print("GetComponentsInChildren COUNT="+fragmentCount);
 		if(list.Count <= 0) {
 			return null;

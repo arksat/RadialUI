@@ -12,6 +12,9 @@ namespace Seiro.Scripts.EventSystems {
 		[SerializeField]
 		private Camera camera;
 
+		[SerializeField]
+		private Camera pointCamera;
+
 		//クリック判定
 		[SerializeField]
 		private int mouseButton = 0;
@@ -22,6 +25,9 @@ namespace Seiro.Scripts.EventSystems {
 		private RaycastHit hitInfo;
 		private const float EPSILON = 0.001f;
 		private Dictionary<Collider, ICollisionEventHandler[]> cache;
+
+		public bool useMouse = true;
+		public GameObject pointer;
 
 		#region UnityEvent
 
@@ -49,7 +55,18 @@ namespace Seiro.Scripts.EventSystems {
 		/// 重なり確認
 		/// </summary>
 		private void CheckHighlight(Vector2 screenPos) {
-			Ray ray = camera.ScreenPointToRay(screenPos);
+
+			Ray ray;
+
+			if (useMouse)
+			{
+				ray = camera.ScreenPointToRay(screenPos);
+			}
+			else
+			{
+				ray = new Ray(pointer.transform.position, transform.forward);
+			}
+
 			RaycastHit hit;
 			if(Physics.Raycast(ray, out hit, 100f)) {
 				//ヒットした場合
