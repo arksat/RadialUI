@@ -148,7 +148,7 @@ public class UICircleFragment : MonoBehaviour, ICollisionEventHandler {
 		float radiusRange = (frag.NowOuter - frag.NowInner);
 		float centerRadius = radiusRange * 0.5f + frag.NowInner;
 		Vector3 pos = GeomUtil.DegToVector2(centerAngle) * centerRadius;
-		pos.z = transform.localPosition.z - 0.2f;
+		pos.z = transform.localPosition.z - 0.3f;
 
 		//lerpSpriteは自身のローカルにいること?
 		lerpSprite.transform.localPosition = pos;
@@ -226,6 +226,12 @@ public class UICircleFragment : MonoBehaviour, ICollisionEventHandler {
 		float max = Mathf.Max(overOuter, clickOuter);
 		SetOuterTarget(max);
 		lerpColor.SetTarget(parentColor);
+		manager.SetParentMode(parentMode);
+	}
+
+	public bool GetParentMode() {
+
+		return parentMode;
 	}
 
 	/// <summary>
@@ -235,6 +241,7 @@ public class UICircleFragment : MonoBehaviour, ICollisionEventHandler {
 		parentMode = false;
 		SetOuterTarget(normalOuter);
 		lerpColor.SetTarget(normalColor);
+		manager.SetParentMode(parentMode);
 	}
 
 	#endregion

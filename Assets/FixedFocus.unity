@@ -248,7 +248,7 @@ MonoBehaviour:
   density: 1
   range: 3
   radius: 0
-  indicateT: 10
+  indicateT: 6
   animationT: 10
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   overColor: {r: 1, g: 0.803, b: 0.1, a: 1}
@@ -355,32 +355,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013289066764, guid: 816f47ea035c645598719b7b253db6ae, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010745028012, guid: 816f47ea035c645598719b7b253db6ae,
-        type: 2}
-      propertyPath: adjustScale
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012091155792, guid: 816f47ea035c645598719b7b253db6ae,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300076, guid: f0b0ffedd5ab6437ea7306ef37fd868d,
-        type: 3}
-    - target: {fileID: 212000012091155792, guid: 816f47ea035c645598719b7b253db6ae,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012091155792, guid: 816f47ea035c645598719b7b253db6ae,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 2.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012091155792, guid: 816f47ea035c645598719b7b253db6ae,
-        type: 2}
-      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -543,32 +517,6 @@ Prefab:
     - target: {fileID: 4000013446915384, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013588408652, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1,
-        type: 2}
-      propertyPath: adjustScale
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012088193198, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300078, guid: f0b0ffedd5ab6437ea7306ef37fd868d,
-        type: 3}
-    - target: {fileID: 212000012088193198, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012088193198, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 2.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012088193198, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1,
-        type: 2}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d31cf6cf09f9a4b1fb2ac7fb558ae3b1, type: 2}
@@ -1091,7 +1039,7 @@ MonoBehaviour:
   density: 1
   range: 3
   radius: 0
-  indicateT: 10
+  indicateT: 6
   animationT: 10
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   overColor: {r: 1, g: 0.803, b: 0.1, a: 1}
@@ -1384,7 +1332,13 @@ MonoBehaviour:
   trackInterval: 3.7
   startAngle: 0
   endAngle: 360
-  focusBase: {fileID: 301646191}
+  target: {fileID: 301646191}
+  focusPointer: {fileID: 327377636}
+  fixedFocus: 0
+  animationT: 10
+  focusOrigin: {x: 2.3, y: 0.2, z: -0.5}
+  focusYes: {x: 0, y: 4.6, z: -0.5}
+  focusNo: {x: 0, y: -4.6, z: -0.5}
 --- !u!1 &1224793384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1500,7 @@ MonoBehaviour:
   density: 1
   range: 3
   radius: 0
-  indicateT: 10
+  indicateT: 6
   animationT: 10
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   overColor: {r: 1, g: 0.803, b: 0.1, a: 1}
@@ -1660,7 +1614,7 @@ MonoBehaviour:
   density: 1
   range: 3
   radius: 0
-  indicateT: 10
+  indicateT: 6
   animationT: 10
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   overColor: {r: 1, g: 0.803, b: 0.1, a: 1}
@@ -1772,7 +1726,7 @@ MonoBehaviour:
   density: 1
   range: 3
   radius: 0
-  indicateT: 10
+  indicateT: 6
   animationT: 10
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   overColor: {r: 1, g: 0.803, b: 0.1, a: 1}

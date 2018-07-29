@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 namespace Seiro.Scripts.EventSystems {
@@ -96,14 +97,14 @@ namespace Seiro.Scripts.EventSystems {
 		/// クリック確認
 		/// </summary>
 		private void CheckClick() {
-			if(Input.GetMouseButtonUp(mouseButton)) {
+			if(Input.GetMouseButtonUp(mouseButton) || Input.GetKeyUp(KeyCode.Space)) {
 				if(downCollider == prevCollider) {
 					UpCollider(downCollider);
 					ClickCollider(downCollider);
 				}
 				downCollider = null;
 			}
-			if(Input.GetMouseButtonDown(mouseButton)) {
+			if(Input.GetMouseButtonDown(mouseButton) || Input.GetKeyDown(KeyCode.Space)) {
 				if(prevCollider != null) {
 					downCollider = prevCollider;
 					DownCollider(downCollider);

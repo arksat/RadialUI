@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using Seiro.Scripts.Utility;
+
 
 /// <summary>
 /// RadialMenu
@@ -30,15 +32,34 @@ public class RadialMenu : MonoBehaviour {
 	private int fragmentCount = 0;
 	private float fragmentOffset = 0;
 
+	public GameObject target;
+	public GameObject focusPointer;
+	public bool fixedFocus = false;
 
-	public GameObject focusBase;
+	private LerpFloat lerpFloat;
+	public float animationT = 10f;
+	private float rotateAngle = 0f;
+	private float currentAngle = 0f;
+	private bool isParentMode = false;
 
+	public Vector3 focusOrigin;
+	public Vector3 focusYes;
+	public Vector3 focusNo;
 
 	#region UnityEvent
 
 	private void Awake() {
 		stack = new Stack<Transform>();
 		clickCallbackDic = new Dictionary<string, Action<GameObject>>();
+
+		lerpFloat = new LerpFloat();
+
+		if (fixedFocus)
+		{
+			target = this.gameObject;
+			focusPointer.transform.parent = GameObject.Find("Demo").transform;
+		}
+
 	}
 
 	private void Update() {
@@ -47,28 +68,66 @@ public class RadialMenu : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.UpArrow))
 		{
+			if (isParentMode)
+			{
+				focusPointer.transform.position= focusYes;
+				return;
+			}
+
+
 			currentFocus++;
 			if (currentFocus > fragmentCount-1) currentFocus--;
 			print("Up FOCUS="+currentFocus);
-			focusBase.transform.Rotate(new Vector3(0, 0, (360.0f / fragmentCount)));
+
+			rotateAngle = 360.0f / fragmentCount;
+			//lerpFloat.SetValues(lerpFloat.Value, rotateAngle);
+			RotateMenu(target, rotateAngle);
+			print("Angle="+rotateAngle + " Value="+lerpFloat.Value + " Target="+lerpFloat.Target);
+
 		}
 		else if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
+			if (isParentMode)
+			{
+				focusPointer.transform.position = focusNo;
+				return;
+			}
 			currentFocus--;
 			if (currentFocus < 0) currentFocus = 0;
 			print("Down FOCUS="+currentFocus);
-			focusBase.transform.Rotate(new Vector3(0, 0, -(360.0f / fragmentCount)));
+
+			rotateAngle = -360.0f / fragmentCount;
+
+			//lerpFloat.SetValues(lerpFloat.Value, rotateAngle);
+			RotateMenu(target, rotateAngle);
+
+
+//			focusPointer.transform.Rotate(new Vector3(0, 0, -(360.0f / fragmentCount)));
+			print("Angle="+rotateAngle + " Value="+lerpFloat.Value + " Target="+lerpFloat.Target);
 
 		}
 
-
 	}
-
 
 	#endregion
 
-
 	#region Function
+
+	public void SetParentMode(bool mode)
+	{
+		isParentMode = mode;
+
+	}
+
+	private void RotateMenu(GameObject g, float angle)
+	{
+		//print("Angle="+angle + " Value="+lerpFloat.Value + " Target="+lerpFloat.Target);
+		//if(!lerpFloat.Processing) return;
+		//lerpFloat.Update(animationT * Time.deltaTime);
+		g.transform.Rotate(new Vector3(0, 0, angle));
+		//currentAngle = lerpFloat.Target;
+	}
+
 
 	/// <summary>
 	/// 指定したtransform配下(1階層分)のTを取得する
@@ -208,6 +267,7 @@ public class RadialMenu : MonoBehaviour {
 		UICircleFragment frag = trans.GetComponent<UICircleFragment>();
 		if(frag != null) {
 			frag.ResetParentMode();
+			focusPointer.transform.position = focusOrigin;
 		}
 	}
 

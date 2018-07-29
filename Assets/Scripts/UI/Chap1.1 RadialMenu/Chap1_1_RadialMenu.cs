@@ -12,7 +12,7 @@ public class Chap1_1_RadialMenu : MonoBehaviour {
 	}
 
 	private void Update() {
-		if(Input.GetMouseButtonDown(1)) {
+		if(Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.V) ) {
 			if(radialMenu.Visibled) {
 				radialMenu.Hide();
 			} else {
