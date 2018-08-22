@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class Chap1_1_RadialMenu : MonoBehaviour {
+public class RadialMenuController : MonoBehaviour {
 
 	public RadialMenu radialMenu;
 
