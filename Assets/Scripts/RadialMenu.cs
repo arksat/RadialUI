@@ -31,7 +31,6 @@ public class RadialMenu : MonoBehaviour {
 
 	public GameObject menuController;
 
-	private LerpFloat lerpFloat;
 	public float animationT = 10f;
 	private float rotateAngle = 0f;
 	private float currentAngle = 0f;
@@ -51,7 +50,6 @@ public class RadialMenu : MonoBehaviour {
 		stack = new Stack<Transform>();
 		clickCallbackDic = new Dictionary<string, Action<GameObject>>();
 
-		lerpFloat = new LerpFloat();
 
 		if (fixedFocus)
 		{
